@@ -1,0 +1,5 @@
+Flask>=3.0
+pillow
+pytesseract
+requests
+ipython
