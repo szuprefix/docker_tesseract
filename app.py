@@ -10,9 +10,12 @@ app = Flask(__name__)
 
 @app.route("/", methods=["POST"])
 def ocr():
-    rd = request.json
-    img = rd.pop('image_url')
-    f = requests.get(img, stream=True).raw
+    if 'file' in request.files:
+        f = request.files['file']
+    else:
+        rd = request.json
+        img = rd.pop('image_url')
+        f = requests.get(img, stream=True).raw
     s = pytesseract.image_to_string(Image.open(f))
     return jsonify({"result": s})
 
