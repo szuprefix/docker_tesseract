@@ -9,6 +9,8 @@ RUN apt update && apt install -y tesseract-ocr
 RUN chmod +x entrypoint.sh
 EXPOSE 5000
 
+ENV PROJECT=tesseract
+
 ENTRYPOINT ["./entrypoint.sh"]
 CMD ["flask"]
 

@@ -1,15 +1,17 @@
 import os
-from flask import Flask, request, jsonify
 import requests
-import pytesseract
 from PIL import Image
 
+from flask import Flask, request, jsonify
+DEBUG = os.environ.get('DEBUG', False)
 
 app = Flask(__name__)
+import logs
 
 
 @app.route("/", methods=["POST"])
 def ocr():
+    import pytesseract
     if 'file' in request.files:
         f = request.files['file']
     else:
@@ -20,5 +22,11 @@ def ocr():
     return jsonify({"result": s})
 
 
+@app.route("/error", methods=["GET"])
+def error():
+    # app.logger.error('test')
+    a = 3 / 0
+    return 'hello'
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5000, debug=DEBUG)

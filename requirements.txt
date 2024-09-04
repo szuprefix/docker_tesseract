@@ -1,5 +1,6 @@
 Flask>=3.0
 pillow
+Flask-Mail
 pytesseract
 requests
 ipython
