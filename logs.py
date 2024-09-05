@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*- 
 # author = 'denishuang'
 from __future__ import unicode_literals
-import os, ssl, email
+import os, email
 import logging
 import smtplib
 from logging.handlers import SMTPHandler
@@ -49,7 +49,7 @@ class SSLSMTPHandler(SMTPHandler):
             msg.set_content(content)
 
             if self.username:
-                print(smtp.login(self.username, self.password))
+                smtp.login(self.username, self.password)
             smtp.send_message(msg)
             smtp.quit()
         except Exception:
